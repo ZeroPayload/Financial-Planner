@@ -1,21 +1,23 @@
 <div class="container">
   <div class="panel left">
     <h3>Left Panel</h3>
-    <ul>
-      <li *ngFor="let item of leftItems" (click)="selectLeft(item)" [class.selected]="item === selectedLeft">{{ item }}</li>
-    </ul>
+    <app-left-panel (optionSelected)="onLeftSelected($event)"></app-left-panel>
   </div>
   <div class="panel center">
     <h3>Center Panel</h3>
-    <ul *ngIf="selectedLeft">
-      <li *ngFor="let item of centerItems[selectedLeft]" (click)="selectCenter(item)" [class.selected]="item === selectedCenter">{{ item }}</li>
-    </ul>
+    <app-center-panel [left]="selectedLeft" (optionSelected)="onCenterSelected($event)"></app-center-panel>
     <div *ngIf="!selectedLeft">Select a left panel item</div>
   </div>
   <div class="panel right">
     <h3>Right Panel</h3>
     <ng-container *ngIf="selectedLeft && selectedCenter">
-      <app-dynamic [left]="selectedLeft" [center]="selectedCenter"></app-dynamic>
+      <app-basic-input *ngIf="selectedLeft === 'Input' && selectedCenter === 'Basic'"></app-basic-input>
+      <app-income-input *ngIf="selectedLeft === 'Input' && selectedCenter === 'Income'"></app-income-input>
+      <app-expense-input *ngIf="selectedLeft === 'Input' && selectedCenter === 'Expense'"></app-expense-input>
+      <app-investments-input *ngIf="selectedLeft === 'Input' && selectedCenter === 'Investments'"></app-investments-input>
+      <app-life-events-input *ngIf="selectedLeft === 'Input' && selectedCenter === 'Life Events'"></app-life-events-input>
+      <app-projected-growth *ngIf="selectedLeft === 'Dashboard' && selectedCenter === 'Projected Growth'"></app-projected-growth>
+      <app-fire-goals *ngIf="selectedLeft === 'Dashboard' && selectedCenter === 'F.I.R.E Goals'"></app-fire-goals>
     </ng-container>
     <div *ngIf="!selectedCenter">Select a center panel item</div>
   </div>

@@ -1,31 +1,46 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DynamicComponent } from './dynamic.component';
+import { LeftPanelComponent } from './left-panel/left-panel.component';
+import { CenterPanelComponent } from './center-panel/center-panel.component';
+import { BasicInputComponent } from './basic-input/basic-input.component';
+import { IncomeInputComponent } from './income-input/income-input.component';
+import { ExpenseInputComponent } from './expense-input/expense-input.component';
+import { InvestmentsInputComponent } from './investments-input/investments-input.component';
+import { LifeEventsInputComponent } from './life-events-input/life-events-input.component';
+import { ProjectedGrowthComponent } from './projected-growth/projected-growth.component';
+import { FireGoalsComponent } from './fire-goals/fire-goals.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, DynamicComponent],
+  imports: [
+    CommonModule,
+    LeftPanelComponent,
+    CenterPanelComponent,
+    BasicInputComponent,
+    IncomeInputComponent,
+    ExpenseInputComponent,
+    InvestmentsInputComponent,
+    LifeEventsInputComponent,
+    ProjectedGrowthComponent,
+    FireGoalsComponent
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class App {
-  leftItems = ['Item 1', 'Item 2', 'Item 3'];
-  centerItems: { [key: string]: string[] } = {
-    'Item 1': ['A', 'B', 'C'],
-    'Item 2': ['D', 'E', 'F'],
-    'Item 3': ['G', 'H', 'I']
-  };
-  selectedLeft: string | null = null;
-  selectedCenter: string | null = null;
+  selectedLeft: string | null = localStorage.getItem('leftPanelSelected') || 'Input';
+  selectedCenter: string | null = localStorage.getItem('centerPanelSelected') || null;
 
-  selectLeft(item: string) {
-    this.selectedLeft = item;
+  onLeftSelected(option: string) {
+    this.selectedLeft = option;
     this.selectedCenter = null;
+    localStorage.setItem('leftPanelSelected', option);
   }
 
-  selectCenter(item: string) {
-    this.selectedCenter = item;
+  onCenterSelected(option: string) {
+    this.selectedCenter = option;
+    localStorage.setItem('centerPanelSelected', option);
   }
 }
