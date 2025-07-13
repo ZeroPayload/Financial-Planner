@@ -1,0 +1,45 @@
+/* Basic 3-panel layout styles */
+.container {
+  display: flex;
+  height: 100vh;
+}
+.panel {
+  border: 1px solid #ccc;
+  padding: 1em;
+  overflow-y: auto;
+  transition: width 0.3s;
+}
+.left {
+  width: 200px;
+  background: #f7f7f7;
+}
+.center {
+  width: 250px;
+  background: #f0f0ff;
+}
+.right {
+  flex: 1;
+  background: #fff;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding: 0.5em;
+  cursor: pointer;
+  border-radius: 4px;
+}
+li.selected {
+  background: #1976d2;
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+  .left, .center, .right {
+    width: 100%;
+    min-height: 120px;
+  }
+}
