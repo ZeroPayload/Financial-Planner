@@ -1,0 +1,12 @@
+<form (ngSubmit)="addEntry()">
+  <label>Type: <input [(ngModel)]="newEntry.type" name="type" required></label>
+  <label>Amount: <input type="number" [(ngModel)]="newEntry.amount" name="amount" required></label>
+  <button type="submit">Add</button>
+</form>
+<ul>
+  <li *ngFor="let entry of entries; let i = index">
+    {{ entry.type }}: {{ entry.amount | number:'1.2-2' }}
+    <button (click)="removeEntry(i)">Remove</button>
+  </li>
+</ul>
+<button (click)="save()">Save All</button>

@@ -1,0 +1,22 @@
+<form (ngSubmit)="addEntry()">
+  <label>Name: <input [(ngModel)]="newEntry.name" name="name" required></label>
+  <label>Type: <input [(ngModel)]="newEntry.type" name="type" required></label>
+  <label>Frequency: <input [(ngModel)]="newEntry.frequency" name="frequency"></label>
+  <label>Age: <input type="number" [(ngModel)]="newEntry.age" name="age"></label>
+  <label>Start: <input type="number" [(ngModel)]="newEntry.start" name="start"></label>
+  <label>End: <input type="number" [(ngModel)]="newEntry.end" name="end"></label>
+  <label>Event Type:
+    <select [(ngModel)]="newEntry.eventType" name="eventType">
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+  </label>
+  <button type="submit">Add</button>
+</form>
+<ul>
+  <li *ngFor="let entry of entries; let i = index">
+    {{ entry.name }} ({{ entry.type }}) - {{ entry.frequency }}, Age: {{ entry.age }}, Start: {{ entry.start }}, End: {{ entry.end }}, Type: {{ entry.eventType }}
+    <button (click)="removeEntry(i)">Remove</button>
+  </li>
+</ul>
+<button (click)="save()">Save All</button>

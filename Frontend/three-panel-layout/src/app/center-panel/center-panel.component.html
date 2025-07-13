@@ -1,0 +1,6 @@
+<ul *ngIf="left === 'Input'">
+  <li *ngFor="let item of inputOptions" (click)="select(item)" [class.selected]="selected === item">{{ item }}</li>
+</ul>
+<ul *ngIf="left === 'Dashboard'">
+  <li *ngFor="let item of dashboardOptions" (click)="select(item)" [class.selected]="selected === item">{{ item }}</li>
+</ul>
