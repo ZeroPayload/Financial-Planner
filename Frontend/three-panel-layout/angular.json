@@ -40,7 +40,10 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/three-panel-layout",
+            "outputPath": {
+              "base": "dist/three-panel-layout",
+              "browser": "" 
+            },
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
